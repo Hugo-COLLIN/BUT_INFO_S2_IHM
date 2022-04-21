@@ -48,7 +48,7 @@ public class HelloApplication extends Application {
         //Center text
         VBox centerPart = new VBox();
 
-            Text immat = new Text("AA-1234-BB");
+            Text immat = new Text("AA-123-BB");
             immat.setFont(Font.font("sans-serif", 80));
             leftPart.setPadding(new Insets(10));
 
