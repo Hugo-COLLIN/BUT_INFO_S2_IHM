@@ -49,7 +49,7 @@ public class HelloApplication extends Application {
         VBox centerPart = new VBox();
 
             Text immat = new Text("AA-1234-BB");
-            immat.setFont(Font.font("serif", 80));
+            immat.setFont(Font.font("sans-serif", 80));
             leftPart.setPadding(new Insets(10));
 
             centerPart.getChildren().add(immat);
