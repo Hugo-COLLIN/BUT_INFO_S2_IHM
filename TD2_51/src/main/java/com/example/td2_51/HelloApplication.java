@@ -2,6 +2,7 @@ package com.example.td2_51;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -20,21 +21,22 @@ public class HelloApplication extends Application {
         //TextField resField = new TextField();
         //app.add(resField,0,0,4,0);
 
-        Button b = new Button("0");
-        app.add(b,1,0);
+
 
         char [] [] touches = {
-                {'7', '8','9', '+'},
-                {'4', '5','6', '-'},
-                {'1', '2','3', 'x'},
-                {'C', '0','=', '/'}
-        }
+                {'7', '8', '9', '+'},
+                {'4', '5', '6', '-'},
+                {'1', '2', '3', 'x'},
+                {'C', '0', '=', '/'}
+        };
 
         for (int i = 0 ; i < 4 ; i ++)
         {
             for (int j = 0 ; j < 4 ; j ++)
             {
-
+                Button b = new Button(String.valueOf(touches[i][j]));
+                b.setPadding(new Insets(10));
+                app.add(b,j,i);
             }
         }
 
