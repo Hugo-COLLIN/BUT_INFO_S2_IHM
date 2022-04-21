@@ -18,8 +18,11 @@ public class HelloApplication extends Application {
         Pane root = new Pane();
         GridPane app = new GridPane();
 
-        //TextField resField = new TextField();
-        //app.add(resField,0,0,4,0);
+        app.setHgap(10);
+        app.setVgap(10);
+
+        TextField resField = new TextField("ZoneCalcul");
+        app.add(resField,0,0, 4,1);
 
 
 
@@ -36,7 +39,7 @@ public class HelloApplication extends Application {
             {
                 Button b = new Button(String.valueOf(touches[i][j]));
                 b.setPadding(new Insets(10));
-                app.add(b,j,i);
+                app.add(b,j, i + 1);
             }
         }
 
