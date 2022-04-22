@@ -90,22 +90,23 @@ public class HelloApplication extends Application {
                     r.setFill(couleur);
                     r.setStroke(Color.BLACK);
                     app.add(r,i,j);
-                    //racine.getChildren().addAll(r);
                     countCases++;
 
                     //Pions
-                    if (i % 2 == j % 2) {
+                    if (i % 2 == j % 2)
+                    {
                         diametre = Math.min(largeur, hauteur) / 2;
-
                         Circle pion = new Circle(0, 0, diametre);
-                        if (nb_pions_blancs > 0) {
+
+                        if (nb_pions_blancs > 0)
+                        {
                             pion.setFill(Color.WHITE);
                             pion.setStroke(Color.BLACK);
-                            //app.setAligment(tmp[currArrPos], HPos.CENTER);
                             nb_pions_blancs--;
                             app.add(pion, i, j);
-
-                        } else if ((nbCases - countCases) / 2 < nb_pions_noirs) {
+                        }
+                        else if ((nbCases - countCases) / 2 < nb_pions_noirs)
+                        {
                             pion.setFill(Color.BLACK);
                             pion.setStroke(Color.WHITE);
                             nb_pions_noirs--;
