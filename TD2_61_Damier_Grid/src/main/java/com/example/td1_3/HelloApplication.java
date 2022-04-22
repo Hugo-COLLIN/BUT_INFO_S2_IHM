@@ -1,6 +1,9 @@
 package com.example.td1_3;
 
 import javafx.application.Application;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
@@ -31,6 +34,9 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException
     {
+        GridPane.setHalignment(app, HPos.CENTER);
+        GridPane.setValignment(app, VPos.CENTER);
+
         //Vars
         Color couleur;
         double x, y;
@@ -41,30 +47,30 @@ public class HelloApplication extends Application {
 
         //Creation damier
         System.out.print("Voulez-vous personnaliser le damier ? (oui/non)\n>> ");
-        change = sc.nextLine();
+        change = sc.nextLine().toLowerCase();
 
         try
         {
-            if (change.toLowerCase().equals("oui"))
+            if (change.equals("oui"))
             {
-                System.out.print("> Largeur en pixels :\n>> ");
+                System.out.print("Largeur en pixels :\n>> ");
                 largeur = sc.nextInt();
 
-                System.out.print("> Hauteur en pixels :\n>> ");
+                System.out.print("Hauteur en pixels :\n>> ");
                 hauteur = sc.nextInt();
 
-                System.out.print("> Nombre de lignes :\n>> ");
+                System.out.print("Nombre de lignes :\n>> ");
                 nb_lignes = sc.nextInt();
 
-                System.out.print("> Nombre de colonnes :\n>> ");
+                System.out.print("Nombre de colonnes :\n>> ");
                 nb_col = sc.nextInt();
 
                 nbCases = nb_lignes * nb_col;
 
-                System.out.print("> Nombre de pions blancs\n>> ");
+                System.out.print("Nombre de pions blancs\n>> ");
                 nb_pions_blancs = sc.nextInt();
 
-                System.out.print("> Nombre de pions noirs\n>> ");
+                System.out.print("Nombre de pions noirs\n>> ");
                 nb_pions_noirs = sc.nextInt();
 
                 if (nb_pions_noirs + nb_pions_blancs > (nbCases / 2)) {
@@ -95,6 +101,7 @@ public class HelloApplication extends Application {
                         if (nb_pions_blancs > 0) {
                             pion.setFill(Color.WHITE);
                             pion.setStroke(Color.BLACK);
+                            //app.setAligment(tmp[currArrPos], HPos.CENTER);
                             nb_pions_blancs--;
                             app.add(pion, i, j);
 
