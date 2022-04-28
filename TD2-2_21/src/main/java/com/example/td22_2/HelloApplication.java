@@ -1,4 +1,4 @@
-package com.example.td22_1;
+package com.example.td22_2;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -12,31 +12,25 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class HelloApplication extends Application {
+    //Attributes
+    public static final int SIZE = 300;
+
     @Override
     public void start(Stage stage) throws IOException {
         Pane root = new Pane();
         stage.setScene(new Scene(root));
 
-        Canvas canvas = new Canvas(400,400);
+        Canvas canvas = new Canvas(SIZE,SIZE);
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
-        gc.setFill(Color.RED);
-        gc.setGlobalAlpha(0.5);
-        gc.fillOval(125,75, 150, 150);
+        for (int i = 0 ; i < 1000 ; i ++)
+        {
+            gc.setFill(Color.rgb((int)(Math.random() * 255), (int)(Math.random() * 255), (int)(Math.random() * 255), Math.random()));
+            gc.fillRect(Math.random() * SIZE, Math.random() * SIZE, Math.random() * SIZE, Math.random() * SIZE);
+        }
 
-        gc.setFill(Color.GREEN);
-        gc.setGlobalAlpha(0.5);
-        gc.fillOval(70,170, 150, 150);
+        root.getChildren().add(canvas);
 
-        gc.setFill(Color.BLUE);
-        gc.setGlobalAlpha(0.5);
-        gc.fillOval(195,170, 150, 150);
-
-
-
-        root.getChildren().addAll(canvas);
-
-        stage.setTitle("Figure - Hugo COLLIN");
         stage.show();
     }
 
