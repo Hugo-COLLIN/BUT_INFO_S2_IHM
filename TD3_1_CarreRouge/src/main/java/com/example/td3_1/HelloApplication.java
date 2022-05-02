@@ -47,7 +47,7 @@ public class HelloApplication extends Application {
             }
         });
 
-        scene.setOnKeyPressed(new EventHandler<KeyEvent>() { //A definir sur la scène, pas sur l'objet'
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() { //A definir sur la scène, pas sur l'objet
             @Override
             public void handle(KeyEvent kE) {
                 switch (kE.getCode()){
