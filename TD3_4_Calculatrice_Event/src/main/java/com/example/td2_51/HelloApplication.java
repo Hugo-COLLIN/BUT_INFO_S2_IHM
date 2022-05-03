@@ -21,13 +21,21 @@ public class HelloApplication extends Application {
 
     TextField resField = new TextField();
 
+    char [] [] touches = {
+            {'7', '8', '9', '+'},
+            {'4', '5', '6', '-'},
+            {'1', '2', '3', 'x'},
+            {'C', '0', '=', '/'}
+    };
+
     //Vars
     String num1 ="";
     String num2 ="";
     String op ;
     double res = 0;
-    boolean oldop = false;
+    boolean oldop = false, oldeq = false;
 
+    /*
     private class Auditeur implements EventHandler<ActionEvent> {
         public void handle (ActionEvent e)
         {
@@ -44,6 +52,7 @@ public class HelloApplication extends Application {
             }
         }
     }
+     */
 
 
     @Override
@@ -56,85 +65,23 @@ public class HelloApplication extends Application {
 
         app.add(resField,0,0, 4,1);
 
-
-
-        char [] [] touches = {
-                {'7', '8', '9', '+'},
-                {'4', '5', '6', '-'},
-                {'1', '2', '3', 'x'},
-                {'C', '0', '=', '/'}
-        };
-
+        System.out.println("oldop\toldeq\tnum1\tnum2\tres");
         for (int i = 0 ; i < 4 ; i ++)
         {
             for (int j = 0 ; j < 4 ; j ++)
             {
                 int fI = i, fJ = j;
                 Button b = new Button(String.valueOf(touches[i][j]));
+                b.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
                 b.setPadding(new Insets(10));
 
                 b.setOnMousePressed(mouseEvent -> {
-                    switch (touches[fI][fJ]) {
-                        case '=':
-                            System.out.println(oldop);
-                            if (oldop) {
-                                System.out.println("OK");
-
-                                //resField.setText(String.valueOf(res));
-
-                                res = calc(num1, num2, op);
-                                resField.clear();
-                                resField.appendText(String.valueOf(res));
-                                oldop = false;
-                                num2 = "";
-
-                            }
-                            break;
-                        case '+':
-                            if (!oldop) {
-                                oldop = true;
-                                op = "+";
-                                //resField.clear();
-                                resField.appendText(op);
-                            } else {
-                                res = calc(num1, num2, op);
-                                num1 = String.valueOf(res);
-                                num2 = "";
-                                op = "+";
-                                    //resField.clear();
-                                    resField.appendText(op);
-                                oldop = true;
-                            }
-                            break;
-                        case 'C':
-                            num1 = "";
-                            num2 = "";
-                            res = 0;
-                            oldop = false;
-                            /*b.addEventHandler(ActionEvent.ACTION,
-                                    actionEvent -> */
-                                            resField.clear();
-                        //);
-                            break;
-                        default:
-                            if (!oldop)
-                                num1 += touches[fI][fJ];
-                            else
-                                num2 += touches[fI][fJ];
-
-                            //b.setOnMousePressed(mouseEvent ->
-                                    resField.appendText(String.valueOf(touches[fI][fJ]));
-                        //);
-                    }
+                    this.typing(fI, fJ);
                 });
-
 
                 app.add(b,j, i + 1);
             }
         }
-
-
-
 
         root.getChildren().addAll(app);
 
@@ -142,18 +89,87 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
-    public int calc (String n1 , String n2 , String op) {
-        n1 = n1.split("\\.")[0];
-        n2 = n2.split("\\.")[0];
+    public void typing (int fI, int fJ)
+    {
+        switch (touches[fI][fJ]) {
+            case '=':
+                if (oldop) {
+                    System.out.println("OK");
+
+                    //resField.setText(String.valueOf(res));
+
+                    res = calc(num1, num2, op);
+                    resField.clear();
+                    resField.appendText(String.valueOf(res));
+                    oldop = false;
+                    num1 = String.valueOf(res);
+                    num2 = "";
+                    oldeq = true;
+                }
+                break;
+            case '+': case '-': case 'x': case '/':
+                if (!oldop) {
+                    oldop = true;
+                    op = String.valueOf(touches[fI][fJ]);
+                    //resField.clear();
+                    resField.appendText(op);
+                } else {
+                    res = calc(num1, num2, op);
+                    num1 = String.valueOf(res);
+                    num2 = "";
+                    op = "+";
+                    //resField.clear();
+                    resField.appendText(op);
+                    oldop = true;
+                }
+                break;
+            case 'C':
+                num1 = "";
+                num2 = "";
+                res = 0;
+                oldop = false;
+                            /*b.addEventHandler(ActionEvent.ACTION,
+                                    actionEvent -> */
+                resField.clear();
+                //);
+                break;
+
+            default:
+                if (oldeq)
+                {
+                    num1 = "";
+                    num2 = "";
+                    res = 0;
+                    oldop = false;
+                    oldeq = false;
+                    resField.clear();
+                }
+                if (!oldop)
+                    num1 += touches[fI][fJ];
+                else
+                    num2 += touches[fI][fJ];
+
+
+                //b.setOnMousePressed(mouseEvent ->
+                resField.appendText(String.valueOf(touches[fI][fJ]));
+                //);
+        }
+        //System.out.println(oldop + "\t" + oldeq + "\t" + num1 + "\t\t" + num2 + "\t" + res);
+    }
+
+
+    public double calc (String n1 , String n2 , String op) {
+        //n1 = n1.split("\\.")[0];
+        //n2 = n2.split("\\.")[0];
         switch (op) {
             case "+":
-                return Integer.parseInt(n1) + Integer.parseInt(n2);
+                return Double.parseDouble(n1) + Double.parseDouble(n2);
             case "-":
-                return Integer.parseInt(n1) - Integer.parseInt(n2);
-            case "*":
-                return Integer.parseInt(n1) * Integer.parseInt(n2);
+                return Double.parseDouble(n1) - Double.parseDouble(n2);
+            case "x":
+                return Double.parseDouble(n1) * Double.parseDouble(n2);
             case "/":
-                return Integer.parseInt(n1) / Integer.parseInt(n2);
+                return Double.parseDouble(n1) / Double.parseDouble(n2);
             default:
                 return 0;
         }
