@@ -122,7 +122,7 @@ public class HelloApplication extends Application {
                         res = calc(num1, num2, op);
                         num1 = String.valueOf(res);
                         num2 = "";
-                        //resField.clear();
+                        resField.clear();
                         resField.appendText(op);
                         oldop = true;
                     }
