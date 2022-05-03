@@ -33,7 +33,8 @@ public class HelloApplication extends Application {
     String num2 ="";
     String op ;
     double res = 0;
-    boolean oldop = false, oldeq = false;
+    char oldkey = '=';
+    boolean oldop = false, oldeq = true;
 
     /*
     private class Auditeur implements EventHandler<ActionEvent> {
@@ -76,7 +77,7 @@ public class HelloApplication extends Application {
                 b.setPadding(new Insets(10));
 
                 b.setOnMousePressed(mouseEvent -> {
-                    this.typing(fI, fJ);
+                    this.typing(b.getText().charAt(0));
                 });
 
                 app.add(b,j, i + 1);
@@ -89,9 +90,9 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
-    public void typing (int fI, int fJ)
+    public void typing (char key)
     {
-        switch (touches[fI][fJ]) {
+        switch (key) {
             case '=':
                 if (oldop) {
                     System.out.println("OK");
@@ -108,30 +109,32 @@ public class HelloApplication extends Application {
                 }
                 break;
             case '+': case '-': case 'x': case '/':
-                if (!oldop) {
-                    oldop = true;
-                    op = String.valueOf(touches[fI][fJ]);
-                    //resField.clear();
-                    resField.appendText(op);
-                } else {
-                    res = calc(num1, num2, op);
-                    num1 = String.valueOf(res);
-                    num2 = "";
-                    op = "+";
-                    //resField.clear();
-                    resField.appendText(op);
-                    oldop = true;
+                if (!(oldkey == '=' || oldkey == '+' || oldkey == '-' || oldkey == 'x' || oldkey == '/'))
+                {
+                    //if (oldkey != '=' && (oldkey == '+' || oldkey == '-' || oldkey == 'x' || oldkey == '/'))
+                    //                    num1 = resField.getText();
+                    op = String.valueOf(key);
+                    if (!oldop) {
+                        oldop = true;
+                        //resField.clear();
+                        resField.appendText(op);
+                    } else {
+                        res = calc(num1, num2, op);
+                        num1 = String.valueOf(res);
+                        num2 = "";
+                        //resField.clear();
+                        resField.appendText(op);
+                        oldop = true;
+                    }
                 }
+
                 break;
             case 'C':
                 num1 = "";
                 num2 = "";
                 res = 0;
                 oldop = false;
-                            /*b.addEventHandler(ActionEvent.ACTION,
-                                    actionEvent -> */
                 resField.clear();
-                //);
                 break;
 
             default:
@@ -145,16 +148,16 @@ public class HelloApplication extends Application {
                     resField.clear();
                 }
                 if (!oldop)
-                    num1 += touches[fI][fJ];
+                    num1 += key;
                 else
-                    num2 += touches[fI][fJ];
+                    num2 += key;
 
+                resField.appendText(String.valueOf(key));
 
-                //b.setOnMousePressed(mouseEvent ->
-                resField.appendText(String.valueOf(touches[fI][fJ]));
-                //);
         }
         //System.out.println(oldop + "\t" + oldeq + "\t" + num1 + "\t\t" + num2 + "\t" + res);
+        //oldkey = touches[fI][fJ];
+        oldkey = key;
     }
 
 
