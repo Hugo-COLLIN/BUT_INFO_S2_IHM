@@ -98,7 +98,7 @@ public class HelloApplication extends Application {
                     System.out.println("OK");
 
                     //resField.setText(String.valueOf(res));
-                    /*
+                    
                     res = calc(num1, num2, op);
                     resField.clear();
                     resField.appendText(String.valueOf(res));
@@ -106,18 +106,10 @@ public class HelloApplication extends Application {
                     num1 = String.valueOf(res);
                     num2 = "";
                     oldeq = true;
-                     */
-                    res = calc(num1, num2, op);
-                    num1 = String.valueOf(res);
-                    num2 = "";
-                    resField.clear();
-                    resField.appendText(num1);
-                    oldop = false;
-                    oldeq = true;
                 }
                 break;
             case '+': case '-': case 'x': case '/':
-                if (!(/*oldkey == '=' ||*/ oldkey == '+' || oldkey == '-' || oldkey == 'x' || oldkey == '/'))
+                if (!(oldkey == '=' || oldkey == '+' || oldkey == '-' || oldkey == 'x' || oldkey == '/'))
                 {
                     //if (oldkey != '=' && (oldkey == '+' || oldkey == '-' || oldkey == 'x' || oldkey == '/'))
                     //                    num1 = resField.getText();
