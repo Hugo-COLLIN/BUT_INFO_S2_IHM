@@ -1,7 +1,9 @@
 package com.example.td4_1_grillemvc_frommodele;
 
+import com.example.td4_1_grillemvc_frommodele.controleur.ControleurSouris;
 import com.example.td4_1_grillemvc_frommodele.modele.Cercle;
 import com.example.td4_1_grillemvc_frommodele.vue.VueGraphique;
+import com.example.td4_1_grillemvc_frommodele.vue.VueTexte;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -15,8 +17,9 @@ public class GrilleMVC extends Application
     public void start(Stage stage) throws Exception {
         Cercle modele = new Cercle(LARGEUR / VueGraphique.TAILLE_CASE, HAUTEUR / VueGraphique.TAILLE_CASE);
         VueGraphique vue = new VueGraphique(modele, LARGEUR, HAUTEUR);
-        //vue.setOnMouseMoved(new ControleurSouris(modele, vue));
         Scene scene = new Scene(vue, LARGEUR, HAUTEUR);
+
+        vue.setOnMouseMoved(new ControleurSouris(modele, vue));
         //scene.setOnKeyPressed(new ControleurClavier(modele, vue));
 
         stage.setTitle("Grille MVC");

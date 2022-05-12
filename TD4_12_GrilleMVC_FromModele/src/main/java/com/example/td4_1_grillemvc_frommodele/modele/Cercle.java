@@ -1,14 +1,16 @@
 package com.example.td4_1_grillemvc_frommodele.modele;
 
-public class Cercle
-{
+import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+
+public class Cercle {
     //Attributes
-    private int x, y;
+    private int x;
+    private int y;
     private final int limiteX = 10;
     private final int limiteY = 10;
 
-    public Cercle(int x, int y)
-    {
+    public Cercle(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -32,6 +34,7 @@ public class Cercle
         this.y = y;
     }
 
+    /*
     public void up()
     {
         if (this.y >= 0)
@@ -55,32 +58,32 @@ public class Cercle
         if (this.y <= limiteX)
             this.x += 1;
     }
+     */
 
-    /*
-
-    public void to(String dir)
-    {
-        switch (dir)
-        {
-            case "UP":
+    public void to(KeyCode dir) {
+        switch (dir) {
+            case UP:
+            case Z:
                 if (this.y >= 0)
                     this.y -= 1;
                 break;
-            case "DOWN":
+            case DOWN:
+            case S:
                 if (this.y <= limiteY)
                     this.y += 1;
                 break;
-            case "LEFT":
+            case LEFT:
+            case Q:
                 if (this.x >= 0)
                     this.x -= 1;
                 break;
-            case "RIGHT":
-                if (this.y <= limiteY)
+            case RIGHT:
+            case D:
+                if (this.x <= limiteX)
                     this.x += 1;
                 break;
             default:
                 break;
         }
     }
-     */
 }
