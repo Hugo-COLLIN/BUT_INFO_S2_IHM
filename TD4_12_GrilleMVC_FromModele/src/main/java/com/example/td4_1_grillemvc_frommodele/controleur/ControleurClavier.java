@@ -23,5 +23,6 @@ public class ControleurClavier implements EventHandler<KeyEvent>
     @Override
     public void handle(KeyEvent e) {
         modele.to(e.getCode());
+        vue.update();
     }
 }

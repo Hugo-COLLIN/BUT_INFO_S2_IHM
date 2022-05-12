@@ -1,5 +1,6 @@
 package com.example.td4_1_grillemvc_frommodele;
 
+import com.example.td4_1_grillemvc_frommodele.controleur.ControleurClavier;
 import com.example.td4_1_grillemvc_frommodele.controleur.ControleurSouris;
 import com.example.td4_1_grillemvc_frommodele.modele.Cercle;
 import com.example.td4_1_grillemvc_frommodele.vue.VueGraphique;
@@ -20,7 +21,7 @@ public class GrilleMVC extends Application
         Scene scene = new Scene(vue, LARGEUR, HAUTEUR);
 
         vue.setOnMouseMoved(new ControleurSouris(modele, vue));
-        //scene.setOnKeyPressed(new ControleurClavier(modele, vue));
+        scene.setOnKeyPressed(new ControleurClavier(modele, vue));
 
         stage.setTitle("Grille MVC");
         stage.setScene(scene);

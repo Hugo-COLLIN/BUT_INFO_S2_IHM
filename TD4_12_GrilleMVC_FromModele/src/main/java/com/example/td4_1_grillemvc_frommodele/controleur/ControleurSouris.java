@@ -18,7 +18,6 @@ public class ControleurSouris implements EventHandler<MouseEvent>
 
     @Override
     public void handle(MouseEvent e) {
-        //Scene s = (Scene)e.getSource();
         modele.setX((int)(Math.ceil(e.getX()) / VueGraphique.TAILLE_CASE)); //+1 / 2
         modele.setY((int)(Math.ceil(e.getY()) / VueGraphique.TAILLE_CASE)); //+1 / 2
         vue.update();

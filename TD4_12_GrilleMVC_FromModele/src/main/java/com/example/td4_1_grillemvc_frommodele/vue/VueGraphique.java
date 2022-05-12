@@ -47,5 +47,7 @@ public class VueGraphique extends Pane
         texte.update();
         texte.setX(modele.getX() * TAILLE_CASE - 12 /*+ DELTA_TEXTE_X*/);
         texte.setY(modele.getY() * TAILLE_CASE /*+ DELTA_TEXTE_Y*/);
+
+
     }
 }

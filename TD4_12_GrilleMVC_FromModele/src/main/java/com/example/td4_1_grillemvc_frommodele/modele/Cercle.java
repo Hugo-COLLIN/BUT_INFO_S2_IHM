@@ -27,14 +27,16 @@ public class Cercle {
 
     // >Setters
     public void setX(int x) {
-        this.x = x;
+        if (x >= 0 && x <= limiteX)
+            this.x = x;
     }
 
     public void setY(int y) {
-        this.y = y;
+        if (y >= 0 && y <= limiteY)
+            this.y = y;
     }
 
-    /*
+
     public void up()
     {
         if (this.y >= 0)
@@ -58,28 +60,28 @@ public class Cercle {
         if (this.y <= limiteX)
             this.x += 1;
     }
-     */
+
 
     public void to(KeyCode dir) {
         switch (dir) {
             case UP:
             case Z:
-                if (this.y >= 0)
+                if (this.y > 0)
                     this.y -= 1;
                 break;
             case DOWN:
             case S:
-                if (this.y <= limiteY)
+                if (this.y < limiteY)
                     this.y += 1;
                 break;
             case LEFT:
             case Q:
-                if (this.x >= 0)
+                if (this.x > 0)
                     this.x -= 1;
                 break;
             case RIGHT:
             case D:
-                if (this.x <= limiteX)
+                if (this.x < limiteX)
                     this.x += 1;
                 break;
             default:
