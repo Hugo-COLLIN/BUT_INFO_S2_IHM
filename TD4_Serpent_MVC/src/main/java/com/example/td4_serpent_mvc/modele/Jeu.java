@@ -62,6 +62,45 @@ public class Jeu
     }
 
     //Methods
+    public void jouer_un_coup (Constantes.Direction direction)
+    {
+        Position tmpPos;
+        int curX = this.serpent.get(0).getX();
+        int curY = this.serpent.get(0).getY();
+
+        switch (direction)
+        {
+            case HAUT:
+                tmpPos = new Position(curX, curY - 1);
+                break;
+            case BAS:
+                tmpPos = new Position(curX, curY + 1);
+                break;
+            case GAUCHE:
+                tmpPos = new Position(curX - 1, curY);
+                break;
+            case DROITE:
+                tmpPos = new Position(curX + 1, curY);
+                break;
+            default:
+                tmpPos = null;
+                break;
+        }
+
+        if (position_autorisee(tmpPos))
+        {
+            for (int i = 1 ; i < this.serpent.size() ; i ++)
+            {
+                curX = this.serpent.get(i).getX();
+                curY = this.serpent.get(i).getY();
+
+                this.serpent.set(i - 1, tmpPos);
+                tmpPos = new Position(curX, curY);
+            }
+
+        }
+    }
+
     private boolean position_autorisee(Position posP) {
         return !chercherSuperposition(posP) && dansPlateau(posP);
     }
