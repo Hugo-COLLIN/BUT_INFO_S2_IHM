@@ -97,8 +97,23 @@ public class Jeu
                 this.serpent.set(i - 1, tmpPos);
                 tmpPos = new Position(curX, curY);
             }
-
+            this.serpent.set(this.serpent.size() - 1, tmpPos);
         }
+
+        /*
+        if (position_autorisee(tmpPos))
+        {
+            for (int i = 1 ; i <= this.serpent.size() ; i ++)
+            {
+                curX = this.serpent.get(i).getX();
+                curY = this.serpent.get(i).getY();
+
+                this.serpent.set(i - 1, tmpPos);
+                tmpPos = new Position(curX, curY);
+            }
+            this.serpent.set(this.serpent.size() - 1, tmpPos);
+        }
+         */
     }
 
     private boolean position_autorisee(Position posP) {

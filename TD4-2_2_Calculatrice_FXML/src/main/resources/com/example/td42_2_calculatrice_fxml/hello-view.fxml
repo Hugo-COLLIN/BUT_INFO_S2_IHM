@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.td42_2_calculatrice_fxml.HelloController">
+    <top>
+        <TextField fx:id="tAffichage" alignment="CENTER_RIGHT" editable="false" text="0" BorderPane.alignment="CENTER" maxWidth="400"> </TextField>
+    </top>
+    <center>
+        <GridPane hgap="5.0" vgap="5.0" BorderPane.alignment="CENTER">
+            <Button text="7" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Button text="8" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Button text="9" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <Button text="+" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Button text="4" GridPane.columnIndex="1" GridPane.rowIndex="2" /> <!--onAction="#onButtonCalc"-->
+            <Button text="5" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Button text="6" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Button text="-" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <Button text="1" GridPane.columnIndex="1" GridPane.rowIndex="3" /> <!--onAction="#onButtonCalc"-->
+            <Button text="2" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Button text="3" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Button text="x" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <Button text="C" GridPane.columnIndex="1" GridPane.rowIndex="4" /> <!--onAction="#onButtonCalc"-->
+            <Button text="0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Button text="=" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <Button text="/" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+        </GridPane>
+    </center>
+
+    <padding>
+        <Insets top="15.0"/>
+    </padding>
+</BorderPane>
+
+<!--
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.td42_2_calculatrice_fxml.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <Label fx:id="welcomeText"/>
+    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+</VBox>
+-->
