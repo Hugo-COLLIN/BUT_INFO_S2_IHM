@@ -64,30 +64,38 @@ public class Jeu
     //Methods
     public void jouer_un_coup (Constantes.Direction direction)
     {
-        Position tmpPos;
+        Position tetePos, tmpPos;
         int curX = this.serpent.get(0).getX();
         int curY = this.serpent.get(0).getY();
 
         switch (direction)
         {
             case HAUT:
-                tmpPos = new Position(curX, curY - 1);
+                tetePos = new Position(curX, curY - 1);
                 break;
             case BAS:
-                tmpPos = new Position(curX, curY + 1);
+                tetePos = new Position(curX, curY + 1);
                 break;
             case GAUCHE:
-                tmpPos = new Position(curX - 1, curY);
+                tetePos = new Position(curX - 1, curY);
                 break;
             case DROITE:
-                tmpPos = new Position(curX + 1, curY);
+                tetePos = new Position(curX + 1, curY);
                 break;
             default:
-                tmpPos = null;
+                tetePos = null;
                 break;
         }
 
-        if (position_autorisee(tmpPos))
+        if (position_autorisee(tetePos))
+        {
+            for (int i = this.serpent.size() - 1 ; i > 0  ; i --)
+                this.serpent.set(i, this.serpent.get(i - 1));
+            this.serpent.set(0, tetePos);
+        }
+
+
+        /*if (position_autorisee(tmpPos))
         {
             for (int i = 1 ; i < this.serpent.size() ; i ++)
             {
@@ -98,7 +106,7 @@ public class Jeu
                 tmpPos = new Position(curX, curY);
             }
             this.serpent.set(this.serpent.size() - 1, tmpPos);
-        }
+        }*/
 
         /*
         if (position_autorisee(tmpPos))

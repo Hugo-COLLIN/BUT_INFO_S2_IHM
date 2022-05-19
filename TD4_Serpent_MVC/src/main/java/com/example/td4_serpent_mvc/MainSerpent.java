@@ -14,15 +14,21 @@ public class MainSerpent
         System.out.println(j);
         j.jouer_un_coup(Constantes.Direction.BAS);
         System.out.println(j);
-        /*
+
         j.jouer_un_coup(Constantes.Direction.GAUCHE);
         System.out.println(j);
         j.jouer_un_coup(Constantes.Direction.BAS);
         System.out.println(j);
         j.jouer_un_coup(Constantes.Direction.DROITE);
         System.out.println(j);
+        j.jouer_un_coup(Constantes.Direction.DROITE);
+        System.out.println(j);
+        j.jouer_un_coup(Constantes.Direction.BAS);
+        System.out.println(j);
+        j.jouer_un_coup(Constantes.Direction.HAUT);
+        System.out.println(j);
 
-         */
+
 
     }
 }
