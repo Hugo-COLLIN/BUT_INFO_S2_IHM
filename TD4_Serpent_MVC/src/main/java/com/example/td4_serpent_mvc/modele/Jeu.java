@@ -10,7 +10,6 @@ public class Jeu
 
     final int TAILLE_SERPENT = 4;
     final int NB_MURS = 15;
-    final int TAILLE_CASE = 30;
     final int LARGEUR = 25;
     final int HAUTEUR = 20;
 
@@ -32,6 +31,31 @@ public class Jeu
     }
 
     //Methods
+    // >Getters/setters
+    public ArrayList<Position> getSerpent() {
+        return serpent;
+    }
+
+    public void setSerpent(ArrayList<Position> serpent) {
+        this.serpent = serpent;
+    }
+
+    public ArrayList<Position> getMurs() {
+        return murs;
+    }
+
+    public void setMurs(ArrayList<Position> murs) {
+        this.murs = murs;
+    }
+
+    public Position getPomme() {
+        return pomme;
+    }
+
+    public void setPomme(Position pomme) {
+        this.pomme = pomme;
+    }
+
     // >Générer objets
     private void genererSerpent ()
     {
