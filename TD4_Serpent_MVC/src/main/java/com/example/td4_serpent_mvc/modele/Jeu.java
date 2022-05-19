@@ -7,6 +7,7 @@ public class Jeu
     //Attributes
     ArrayList<Position> serpent, murs;
     Position pomme;
+    private Position tmp;
 
     final int TAILLE_SERPENT = 4;
     final int NB_MURS = 15;
@@ -16,7 +17,7 @@ public class Jeu
 
     //Constructor
     public Jeu() {
-        Position tmp;
+
         boolean autorise = false;
 
         this.serpent = new ArrayList<Position>();
@@ -29,30 +30,24 @@ public class Jeu
         }
 
         for (int i = 0 ; i < NB_MURS ; i ++)
+            this.murs.add(genererPosAutorisee());
+        /*
+        for (int i = 0 ; i < NB_MURS ; i ++)
         {
             tmp = new Position(
                     (int) (Math.random() * LARGEUR),
                     (int) (Math.random() * HAUTEUR)
             );
 
-            autorise = position_autorisee(tmp);
-
-            if (autorise)
+            if (position_autorisee(tmp))
                 this.murs.add(tmp);
             else
                 i --;
         }
-        do {
-            tmp = new Position(
-                    (int) (Math.random() * LARGEUR),
-                    (int) (Math.random() * HAUTEUR)
-            );
 
-            autorise = position_autorisee(tmp);
-        }
-        while (autorise);
+         */
 
-        this.pomme = tmp;
+        genererPomme();
     }
 
     public Jeu(ArrayList<Position> serpent, ArrayList<Position> murs, Position pomme) {
@@ -62,6 +57,25 @@ public class Jeu
     }
 
     //Methods
+    // >Générer objets
+    private void genererPomme ()
+    {
+        this.pomme = genererPosAutorisee();
+    }
+
+    private Position genererPosAutorisee()
+    {
+        do
+            tmp = new Position(
+                    (int) (Math.random() * LARGEUR),
+                    (int) (Math.random() * HAUTEUR)
+            );
+        while (!position_autorisee(tmp));
+
+        return tmp;
+    }
+
+
     public void jouer_un_coup (Constantes.Direction direction)
     {
         Position tetePos, tmpPos;
@@ -92,6 +106,10 @@ public class Jeu
             for (int i = this.serpent.size() - 1 ; i > 0  ; i --)
                 this.serpent.set(i, this.serpent.get(i - 1));
             this.serpent.set(0, tetePos);
+
+            if (tetePos == this.pomme)
+                genererPomme();
+
         }
 
 
@@ -124,6 +142,7 @@ public class Jeu
          */
     }
 
+    // >Position autorisée
     private boolean position_autorisee(Position posP) {
         return !chercherSuperposition(posP) && dansPlateau(posP);
     }
