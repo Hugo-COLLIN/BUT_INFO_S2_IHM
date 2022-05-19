@@ -7,7 +7,6 @@ public class Jeu
     //Attributes
     ArrayList<Position> serpent, murs;
     Position pomme;
-    private Position tmp;
 
     final int TAILLE_SERPENT = 4;
     final int NB_MURS = 15;
@@ -18,35 +17,11 @@ public class Jeu
     //Constructor
     public Jeu() {
 
-        boolean autorise = false;
-
         this.serpent = new ArrayList<Position>();
         this.murs = new ArrayList<Position>();
 
-        for (int i = TAILLE_SERPENT ; i >= 0 ; i --)
-        {
-            tmp = new Position(i,0);
-            this.serpent.add(tmp);
-        }
-
-        for (int i = 0 ; i < NB_MURS ; i ++)
-            this.murs.add(genererPosAutorisee());
-        /*
-        for (int i = 0 ; i < NB_MURS ; i ++)
-        {
-            tmp = new Position(
-                    (int) (Math.random() * LARGEUR),
-                    (int) (Math.random() * HAUTEUR)
-            );
-
-            if (position_autorisee(tmp))
-                this.murs.add(tmp);
-            else
-                i --;
-        }
-
-         */
-
+        genererSerpent();
+        genererMurs();
         genererPomme();
     }
 
@@ -58,6 +33,17 @@ public class Jeu
 
     //Methods
     // >Générer objets
+    private void genererSerpent ()
+    {
+        for (int i = TAILLE_SERPENT ; i >= 0 ; i --)
+            this.serpent.add(new Position(i,0));
+    }
+    private void genererMurs ()
+    {
+        for (int i = 0 ; i < NB_MURS ; i ++)
+            this.murs.add(genererPosAutorisee());
+    }
+
     private void genererPomme ()
     {
         this.pomme = genererPosAutorisee();
@@ -65,6 +51,7 @@ public class Jeu
 
     private Position genererPosAutorisee()
     {
+        Position tmp;
         do
             tmp = new Position(
                     (int) (Math.random() * LARGEUR),
