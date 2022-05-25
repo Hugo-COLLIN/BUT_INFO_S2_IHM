@@ -6,14 +6,14 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class MainView extends GridPane
+public class GridView extends GridPane
 {
-    static final int TAILLE_CASE = 75;
+    public static final int TAILLE_CASE = 75;
 
     Grid model;
 
 
-    public MainView()
+    public GridView()
     {
         this.model = new Grid();
 
@@ -34,7 +34,7 @@ public class MainView extends GridPane
     public void makeRect (int x, int y)
     {
         Rectangle rect = updateRectFill(
-                new Rectangle( TAILLE_CASE, TAILLE_CASE),
+                new Rectangle(TAILLE_CASE, TAILLE_CASE),
                 this.model.getLight(x,y)
         );
         rect.setArcHeight(15);
@@ -52,4 +52,11 @@ public class MainView extends GridPane
 
         return rectP;
     }
+    /*
+    public void update ()
+    {
+
+    }
+
+     */
 }

@@ -15,24 +15,19 @@ public class Grid
                 this.lights[i][j] = false;
     }
 
-    public void invertOnClick (int x, int y)
+    public void clickOnLight (int x, int y)
     {
         invert(x,y);
-        tryInvert(x - 1, y);
-        tryInvert(x + 1, y);
-        tryInvert(x, y - 1);
-        tryInvert(x, y + 1);
-    }
-
-    public void tryInvert (int x, int y)
-    {
-        if (inGrid(x, y))
-            invert(x, y);
+        invert(x - 1, y);
+        invert(x + 1, y);
+        invert(x, y - 1);
+        invert(x, y + 1);
     }
 
     public void invert (int x, int y)
     {
-        this.lights[x][y] = !this.lights[x][y];
+        if (inGrid(x, y))
+            this.lights[x][y] = !this.lights[x][y];
     }
 
     public boolean inGrid (int x, int y)
