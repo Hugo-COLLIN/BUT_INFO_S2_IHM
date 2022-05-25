@@ -1,5 +1,6 @@
 package com.example.switchOffTheLight.view;
 
+import com.example.switchOffTheLight.controller.ClickOnGridController;
 import com.example.switchOffTheLight.model.GridModel;
 import javafx.geometry.Insets;
 import javafx.scene.layout.GridPane;
@@ -18,11 +19,12 @@ public class GridView extends GridPane
 
     public GridView()
     {
+        int count = GridModel.LENGTH_X;
         this.model = new GridModel();
-        this.rectList = new ArrayList<>();
+        this.rectList = new ArrayList<>(count);
 
-        //for (ArrayList<Rectangle> al : this.btnList)
-        //    al = new ArrayList<>();
+        for (int i = 0 ; i < count ; i ++)
+            this.rectList.add(new ArrayList<>());
 
         this.setHgap(5);
         this.setVgap(5);
@@ -46,6 +48,11 @@ public class GridView extends GridPane
         );
         rect.setArcHeight(15);
         rect.setArcWidth(15);
+
+        this.rectList.get(x).add(y, rect);
+
+        //this.setOnMouseClicked(new ClickOnGridController(model, this));
+
         this.add(rect, x, y);
 
     }
@@ -64,7 +71,11 @@ public class GridView extends GridPane
     {
         for (int i = 0 ; i < GridModel.LENGTH_X ; i ++)
             for (int j = 0 ; j < GridModel.LENGTH_Y ; j ++)
+            {
                 this.updateRectFill(this.rectList.get(i).get(j), this.model.getLight(i, j));
+                System.out.println("ok");
+            }
+
     }
 
 

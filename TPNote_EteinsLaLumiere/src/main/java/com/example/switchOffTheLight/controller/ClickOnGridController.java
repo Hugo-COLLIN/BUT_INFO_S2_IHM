@@ -9,9 +9,9 @@ import javafx.scene.input.MouseEvent;
 public class ClickOnGridController implements EventHandler<MouseEvent>
 {
     private final GridModel model;
-    private final GraphicalView vue;
+    private final GridView vue;
 
-    public ClickOnGridController (GridModel m, GraphicalView v)
+    public ClickOnGridController (GridModel m, GridView v)
     {
         this.model = m;
         this.vue = v;
@@ -19,10 +19,13 @@ public class ClickOnGridController implements EventHandler<MouseEvent>
 
     @Override
     public void handle(MouseEvent e) {
-        if (e.isPrimaryButtonDown()) {
-            this.model.clickOnLight((int) (e.getX() / GridView.TAILLE_CASE), (int) (e.getY() / GridView.TAILLE_CASE));
-            System.out.println(e.getX() + "\n" + e.getY());
-            this.vue.getGridView().update();
-        }
+
+        this.model.clickOnLight((int) (e.getX() / GridView.TAILLE_CASE), (int) (e.getY() / GridView.TAILLE_CASE));
+        System.out.println(e.getX() + "\n" + e.getY());
+        this.vue.update();
+
+        //if (e.isPrimaryButtonDown()) {
+
+        //}
     }
 }

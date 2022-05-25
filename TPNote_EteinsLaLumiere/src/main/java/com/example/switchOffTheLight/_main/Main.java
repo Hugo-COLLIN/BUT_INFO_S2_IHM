@@ -14,7 +14,7 @@ public class Main extends Application {
         GraphicalView vue = new GraphicalView();
         Scene scene = new Scene(vue);
 
-        vue.getGridView().setOnMouseClicked(new ClickOnGridController(model, vue));
+        vue.getGridView().setOnMouseClicked(new ClickOnGridController(model, vue.getGridView()));
 
         stage.setScene(scene);
         stage.show();
