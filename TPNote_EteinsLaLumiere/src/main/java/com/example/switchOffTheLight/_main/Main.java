@@ -1,19 +1,20 @@
 package com.example.switchOffTheLight._main;
 
-import com.example.switchOffTheLight.model.Grid;
+import com.example.switchOffTheLight.controller.ClickOnGridController;
+import com.example.switchOffTheLight.model.GridModel;
 import com.example.switchOffTheLight.view.GraphicalView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class Main extends Application {
     @Override
-    public void start(Stage stage) throws IOException {
-        Grid model = new Grid();
+    public void start(Stage stage) {
+        GridModel model = new GridModel();
         GraphicalView vue = new GraphicalView();
         Scene scene = new Scene(vue);
+
+        vue.getGridView().setOnMouseClicked(new ClickOnGridController(model, vue));
 
         stage.setScene(scene);
         stage.show();

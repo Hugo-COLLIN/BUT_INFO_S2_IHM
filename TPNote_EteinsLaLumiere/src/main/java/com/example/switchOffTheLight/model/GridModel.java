@@ -1,13 +1,13 @@
 package com.example.switchOffTheLight.model;
 
-public class Grid
+public class GridModel
 {
     boolean [][] lights;
 
     public static final int LENGTH_X = 4;
     public static final int LENGTH_Y = 3;
 
-    public Grid() {
+    public GridModel() {
         this.lights = new boolean[LENGTH_X][LENGTH_Y];
 
         for (int i = 0 ; i < LENGTH_X ; i ++)
