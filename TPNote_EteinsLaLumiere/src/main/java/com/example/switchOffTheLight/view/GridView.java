@@ -15,16 +15,16 @@ public class GridView extends GridPane
 
     GridModel model;
 
-    ArrayList<ArrayList<Rectangle>> rectList;
+    ArrayList<Rectangle> rectList;
 
     public GridView()
     {
-        int count = GridModel.LENGTH_X;
+        //int count = GridModel.LENGTH_X;
         this.model = new GridModel();
-        this.rectList = new ArrayList<>(count);
+        this.rectList = new ArrayList<>();
 
-        for (int i = 0 ; i < count ; i ++)
-            this.rectList.add(new ArrayList<>());
+        //for (int i = 0 ; i < count ; i ++)
+        //    this.rectList.add(new ArrayList<>());
 
         this.setHgap(5);
         this.setVgap(5);
@@ -49,7 +49,7 @@ public class GridView extends GridPane
         rect.setArcHeight(15);
         rect.setArcWidth(15);
 
-        this.rectList.get(x).add(y, rect);
+        this.rectList.add(rect);
 
         //this.setOnMouseClicked(new ClickOnGridController(model, this));
 
@@ -69,11 +69,12 @@ public class GridView extends GridPane
 
     public void update ()
     {
-        for (int i = 0 ; i < GridModel.LENGTH_X ; i ++)
-            for (int j = 0 ; j < GridModel.LENGTH_Y ; j ++)
+        for (int i = 0 ; i < GridModel.LENGTH_Y ; i ++)
+            for (int j = 0 ; j < GridModel.LENGTH_X ; j ++)
             {
-                this.updateRectFill(this.rectList.get(i).get(j), this.model.getLight(i, j));
-                System.out.println("ok");
+                int tmp1 = i * GridModel.LENGTH_X + j;
+                this.updateRectFill(this.rectList.get(i * GridModel.LENGTH_X + j), this.model.getLight(i, j));
+                System.out.println(i + "\n" + j + "\n" + tmp1);
             }
 
     }
